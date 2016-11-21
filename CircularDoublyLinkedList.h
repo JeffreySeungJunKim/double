@@ -7,8 +7,12 @@ private:
 	class Node {
 	public:
 		//Node Constructor 
-		Node(T val, Node* nx = nullptr, Node* prv = nullptr) :Value(val), next(nx), previous(prv)
-		{		}
+		Node(T val, Node* nx = nullptr, Node* prv = nullptr)
+		{
+			this->Value = val;
+			this->next = nx;
+			this->previous = prv;
+		}
 		T Value;
 		Node*next;
 		Node*previous;
@@ -19,38 +23,36 @@ private:
 	unsigned int m_size;
 
 public:
-	//Create the CircularDoublyLinkedList
+	//constructor
 	CircularDoublyLinkedList();
 	//destrcutor
 	~CircularDoublyLinkedList();
-	//Add Item to end of the list 
+	//Add Item to the head.
 	void addItem(T val);
 	//get head
 	inline Node*getHead()const { return m_head; }
 	//move head and get direction as parameter
 	void move_head(bool direction);
 	
-	class Iterator {// iterators are used for efficient traversal of linked lists
+	class Iterator 
+	{// iterators are used for efficient traversal of linked lists
 	private:
 		Node* m_ptr;    // an iterator hides a pointer to node
 	public:
 		Iterator(Node* ptr) { m_ptr = ptr; }
 		void operator++ () { m_ptr = m_ptr->next; } // for forward traversing, e,g, Iterator i=begin(); ... ++i;
-		void operator--() { m_ptr = m_ptr->previous; }
+		void operator--() { m_ptr = m_ptr->previous; } // operator -- that is pre-operator
 		bool operator != (const Iterator& b) { return m_ptr != b.m_ptr; }
 		int operator *() { return m_ptr->Value; }
-		T getValue() { return m_ptr->Value; }
-		void setValue(int val) { m_ptr->Value = val; }
+		T getValue() { return m_ptr->Value; } // use get function to access the private node
+		void setValue(int val) { m_ptr->Value = val; } // set value using 
 	};
 	Iterator begin() const{ return Iterator(m_head); }
 	Iterator end() const{ return Iterator(m_tail); }
-	
 };
 
 //Template creation of CircularDoublyLinkedList
-
-//Creation of DoublyLinkedList
-//Head and tail point to nothing 
+//Head and tail point to nothing if it is the first node
 template<class T>
 CircularDoublyLinkedList<T>::CircularDoublyLinkedList() :
 m_head(nullptr), m_tail(nullptr), m_size(0)
@@ -60,7 +62,7 @@ CircularDoublyLinkedList<T>:: ~CircularDoublyLinkedList()
 {
 	Node * here = m_head, *nextNode;
 	//delete until all the node is freed
-	while (this->m_size>0)
+	while (this->m_size > 0)
 	{
 		nextNode = here->next;
 		delete here;
@@ -76,7 +78,11 @@ void CircularDoublyLinkedList<T>::addItem(T val)
 	m_head = new Node(val, this->m_head, this->m_tail);
 	//If this is the first value 
 	if (m_tail == nullptr) // check if this is the first value that was inputed
+	{
 		m_tail = m_head;//Set head and tail to accompany nodes 
+		//m_head->next = m_head;
+		//m_head->previous = m_tail;
+	}
 	//Preceding Value 
 	else {
 		//Point previous node's previous to the new temp 
@@ -90,13 +96,13 @@ void CircularDoublyLinkedList<T>::move_head(bool direction)
 {
 	if (direction)
 	{//moving to the  right
-		m_head = m_head->next;
-		m_tail = m_tail->next;
+		m_head = m_head->previous;
+		m_tail = m_tail->previous;
 	}
 	else
 	{//moving to the left
-		m_head = m_head->previous;
-		m_tail = m_tail->previous;
+		m_head = m_head->next;
+		m_tail = m_tail->next;
 	}
 }
 
