@@ -88,17 +88,17 @@ bool TopSpin::isSolved()
 	bool found = false;
 	while (!found)// find where number value 1 is
 		(temp.getValue() == 1) ? found = true : ++temp;
+	CircularDoublyLinkedList<int>::Iterator temp2(temp);
 	++temp;
-	for (int val = temp.getValue(); val <= gameSize; val++, --temp)
+	for (int val = temp.getValue(); val >=1; ++temp, val--)
 	{
 		if (val != temp.getValue()) // if val does not match return false 
 		{
-			for (int reverseCounter = gameSize; reverseCounter > 1; reverseCounter--, ++temp)
+			--temp2;
+			for (int reverseCounter = gameSize; reverseCounter > 1; reverseCounter--, --temp2)
 			{
-				if (reverseCounter != temp.getValue())
-				{
+				if (reverseCounter != temp2.getValue())
 					return 0;
-				}
 			}
 		}
 	}

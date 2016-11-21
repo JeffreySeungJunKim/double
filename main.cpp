@@ -10,13 +10,13 @@ int main()
 	cout << "game size: "; cin >> size; // get size
 	cout << "spin size?: "; cin >> spinsize; //get spinsize
 	TopSpin a1(size, spinsize);//constructor that uses parameters size and spinsize
-
+	cout << a1;
 	int input;
-	cout << "how many moves? ";
-	cin >> input;
+	//cout << "how many moves? ";
+	//cin >> input;
 
-	for (int i = 0; i < input; i++)
-		a1.shiftLeft();
+	//for (int i = 0; i < input; i++)
+	//	a1.shiftLeft();
 	a1.spin();
 	cout << a1;
 
@@ -50,14 +50,14 @@ int main()
 					a1.shiftLeft();// shift games to the left n times
 			}
 			cout << a1;
-			/*if (a1.isSolved())
-				return 0;*/
+			if (a1.isSolved())
+				return 0;
 			break;
 		case 2:
 			a1.spin(); // flip the value that is within the game
 			cout << a1;
-			/*if (a1.isSolved())
-				return 0;*/
+			if (a1.isSolved())
+				return 0;
 			break;
 		case 3:
 			return 0; // exit the program
@@ -66,4 +66,4 @@ int main()
 	}
 		
 	return 0;
-}
+	}
