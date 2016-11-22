@@ -13,6 +13,7 @@ private:
 			this->next = nx;
 			this->previous = prv;
 		}
+		//stores next and previous
 		T Value;
 		Node*next;
 		Node*previous;
@@ -40,10 +41,8 @@ public:
 		Node* m_ptr;    // an iterator hides a pointer to node
 	public:
 		Iterator(Node* ptr) { m_ptr = ptr; }
-		void operator++ () { m_ptr = m_ptr->next; } // for forward traversing, e,g, Iterator i=begin(); ... ++i;
-		void operator--() { m_ptr = m_ptr->previous; } // operator -- that is pre-operator
-		bool operator != (const Iterator& b) { return m_ptr != b.m_ptr; }
-		int operator *() { return m_ptr->Value; }
+		void operator++ () { m_ptr = m_ptr->next; } // for forward traversing to next node
+		void operator--() { m_ptr = m_ptr->previous; } // operator -- that is pre-operator transversing to previous node
 		T getValue() { return m_ptr->Value; } // use get function to access the private node
 		void setValue(int val) { m_ptr->Value = val; } // set value using 
 	};
@@ -105,9 +104,3 @@ void CircularDoublyLinkedList<T>::move_head(bool direction)
 		m_tail = m_tail->next;
 	}
 }
-
-
-
-
-
-

@@ -22,12 +22,12 @@ public:
 	TopSpin(int& size, int& spinSize);
 	~TopSpin();
 	//Top Spin Functions
-	int getSize() const;
-	void shiftLeft();
-	void shiftRight();
-	void spin();
-	bool isSolved();
-	//getfunctions
+	int getSize() const; //return size
+	void shiftLeft();//shift all numbers to the left and first value goes to m_tail
+	void shiftRight();//shift all numbers to the right and last val goes to m_head
+	void spin(); // spin the value of m_head to m_head + spinsize
+	bool isSolved(); //check if the numbers are ordered 1 to n orderly
+	//other functions
 	friend ostream& operator<< (ostream& os, const TopSpin& s);
 };
 

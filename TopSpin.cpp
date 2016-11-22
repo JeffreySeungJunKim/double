@@ -29,7 +29,7 @@ TopSpin::~TopSpin()
 
 int TopSpin::getSize() const
 {
-	return gameSize;
+	return gameSize; //return size and dont change any val
 }
 
 ostream& operator << (ostream& os, const TopSpin& s)
@@ -41,6 +41,7 @@ ostream& operator << (ostream& os, const TopSpin& s)
 		cout << "--";
 	cout << "|" << endl;
 
+	//oputs value
 	for (int i = 0; i < s.gameSize; i++, ++a1)
 	{
 		if (i == 0 || i == s.spin_size)
@@ -58,27 +59,26 @@ ostream& operator << (ostream& os, const TopSpin& s)
 
 void TopSpin::shiftLeft()
 {
-	board.move_head(false);
+	board.move_head(false);//move head giving direction
 }
 
 void TopSpin::shiftRight()
 {
-	board.move_head(true);
+	board.move_head(true); //move head giving direction
 }
 
 void TopSpin::spin()
 {
 	CircularDoublyLinkedList<int>::Iterator g(board.getHead());
 	CircularDoublyLinkedList<int>::Iterator here(board.getHead());
+	//declare 2 nodes so we can swap 2 location 
 	for (int i = 1; i < spin_size; ++i)
-		++g;// get to its location
-	for (int k = 1; k <= (spin_size / 2); k++)
+		++g; //find last node of spin size
+	for (int k = 1; k <= (spin_size / 2); k++,++here,--g)
 	{
-		int temp = here.getValue();
-		here.setValue(g.getValue());
-		g.setValue(temp);
-		++here;
-		--g;
+		int temp = here.getValue(); // store value temeraerly
+		here.setValue(g.getValue());//set value to the here val
+		g.setValue(temp);// set value of temp
 	}
 }
 
@@ -88,19 +88,12 @@ bool TopSpin::isSolved()
 	bool found = false;
 	while (!found)// find where number value 1 is
 		(temp.getValue() == 1) ? found = true : ++temp;
-	CircularDoublyLinkedList<int>::Iterator temp2(temp);
-	++temp;
-	for (int val = temp.getValue(); val >=1; ++temp, val--)
+	--temp; // add one more to compare 2
+	for (int val = 2; val <= gameSize; --temp, val++)
 	{
 		if (val != temp.getValue()) // if val does not match return false 
-		{
-			--temp2;
-			for (int reverseCounter = gameSize; reverseCounter > 1; reverseCounter--, --temp2)
-			{
-				if (reverseCounter != temp2.getValue())
-					return 0;
-			}
-		}
+			return 0; // false
+
 	}
 	cout << "CONGRATULATIONS!" << endl;
 	return 1;//return true

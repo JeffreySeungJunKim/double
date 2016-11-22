@@ -12,11 +12,11 @@ int main()
 	TopSpin a1(size, spinsize);//constructor that uses parameters size and spinsize
 	cout << a1;
 	int input;
-	//cout << "how many moves? ";
-	//cin >> input;
+	cout << "how many moves? ";
+	cin >> input;
 
-	//for (int i = 0; i < input; i++)
-	//	a1.shiftLeft();
+	for (int i = 0; i < input; i++)
+		a1.shiftLeft();
 	a1.spin();
 	cout << a1;
 
