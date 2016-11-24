@@ -222,10 +222,13 @@ void CircularDoublyLinkedList<T>::swap(unsigned pos1, unsigned pos2)
 	Node *temp = m_head;
 	Node *temp2 = m_head;
 	T store_val;
+	//go to pos 1
 	for (int i = 1; i < pos1; i++)
 		temp = temp->next;
+	//go 2 pos 2
 	for (int i = 1; i < pos2; i++)
 		temp2 = temp2->next;
+	//swap value
 	store_val = temp->Value;
 	temp->Value = temp2->Value;
 	temp2->Value = store_val;
@@ -245,7 +248,7 @@ void CircularDoublyLinkedList<T>::addItem(T val)
 		(m_head->next)->previous = m_head;
 		(m_head->previous)->next = m_head;
 	}
-	m_size++;
+	m_size++;//increment size
 }
 template <class T>
 void CircularDoublyLinkedList<T>::move_head(bool direction)
