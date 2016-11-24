@@ -6,11 +6,17 @@ using namespace std;
 
 int main()
 {
-	int size, spinsize; // ini
-	cout << "game size: "; cin >> size; // get size
-	cout << "spin size?: "; cin >> spinsize; //get spinsize
-	TopSpin a1(size, spinsize);//constructor that uses parameters size and spinsize
+	//int size, spinsize; // ini
+	//cout << "game size: "; cin >> size; // get size
+	//cout << "spin size?: "; cin >> spinsize; //get spinsize
+	TopSpin a1(20, 4);//constructor that uses parameters size and spinsize
 	cout << a1;
+
+	// test
+	cout << a1;
+	a1.test();
+	cout << a1;
+
 	int input;
 	cout << "how many moves? ";
 	cin >> input;

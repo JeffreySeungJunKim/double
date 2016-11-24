@@ -1,6 +1,6 @@
 #include"TopSpin.h"
 
-TopSpin::TopSpin(int& size, int& spinSize) // constructor that 
+TopSpin::TopSpin(int size, int spinSize) // constructor that get 2 parameter
 {
 	//Checks params if they are within bounds
 	if (size<1 || spinSize>size)
@@ -17,7 +17,7 @@ TopSpin::TopSpin(int& size, int& spinSize) // constructor that
 	}
 
 	//Adding values to List
-	for (int x = 1; x <= size; x++)
+	for (int x = gameSize; x >=1 ; x--)
 	{
 		board.addItem(x); // go to circular doubly linked list
 	}

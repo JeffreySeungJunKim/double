@@ -19,7 +19,7 @@ private:
 	int spin_size;
 	CircularDoublyLinkedList<int> board; // composition of board
 public:
-	TopSpin(int& size, int& spinSize);
+	TopSpin(int size, int spinSize);
 	~TopSpin();
 	//Top Spin Functions
 	int getSize() const; //return size
