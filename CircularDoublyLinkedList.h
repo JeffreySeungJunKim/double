@@ -35,7 +35,7 @@ public:
 	//move head and get direction as parameter
 	void move_head(bool direction);
 	//default function that will not be used but i want the mark
-	int size() const;
+	unsigned int size() const;
 	bool isEmpty() const;
 	T removeHead();
 	T retrieveHead()const;
@@ -84,7 +84,7 @@ CircularDoublyLinkedList<T>:: ~CircularDoublyLinkedList()
 	}
 }
 template<class T>
-int CircularDoublyLinkedList<T>::size() const
+unsigned int CircularDoublyLinkedList<T>::size() const
 {
 	retun this->m_size;
 }
@@ -98,10 +98,12 @@ T CircularDoublyLinkedList<T>::removeHead()
 {
 	Node * oldNode = m_head; // store temp node to delete
 	T returnVal = m_head->Value;
+	//link before deleting
 	m_head = m_head->next;
 	m_tail->next = m_head;
 	m_head->previous=m_tail
-	if (m_head == NULL) m_tail = NULL;
+	if (m_head == nullptr) 
+		m_tail = nullptr;
 	m_size--;
 	delete oldNode; // delete that node
 	return returnVal;//return value of the old node had
@@ -169,8 +171,7 @@ T CircularDoublyLinkedList<T>::replace(unsigned pos, T val)
 		cout << "invalid position, returning without change" << endl;
 		return 0;
 	}
-	
-	
+		
 	Node * here = m_head;
 	//go to the position using forloop
 	for (unsigned int k = 1; k < pos; k++)
@@ -195,7 +196,7 @@ T CircularDoublyLinkedList<T>::remove(unsigned pos)
 	//if its at the end of the size, remove head
 	if (n == m_size)
 		return removeTail();
-	//if not 3 cases do this equation
+	//if not 3 cases do this equations
 	Node * here = m_head;
 	for (unsigned int k = 1; k < pos - 1; k++)
 		here = here->next;
@@ -229,7 +230,6 @@ void CircularDoublyLinkedList<T>::swap(unsigned pos1, unsigned pos2)
 	temp->Value = temp2->Value;
 	temp2->Value = store_val;
 }
-
 template <class T>
 void CircularDoublyLinkedList<T>::addItem(T val)
 {

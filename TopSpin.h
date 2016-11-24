@@ -4,7 +4,8 @@
 using namespace std;
 //Abstract Class
 
-class TopSpinADT {
+class TopSpinADT 
+{
 public:
 	virtual void shiftLeft() = 0;
 	virtual void shiftRight() = 0;
@@ -25,8 +26,11 @@ public:
 	int getSize() const; //return size
 	void shiftLeft();//shift all numbers to the left and first value goes to m_tail
 	void shiftRight();//shift all numbers to the right and last val goes to m_head
+	void shiftLeft(int times);
+	void shiftRight(int times);
 	void spin(); // spin the value of m_head to m_head + spinsize
 	bool isSolved(); //check if the numbers are ordered 1 to n orderly
+
 	//other functions
 	friend ostream& operator<< (ostream& os, const TopSpin& s);
 };

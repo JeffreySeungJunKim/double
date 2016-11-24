@@ -12,22 +12,14 @@ int main()
 	TopSpin a1(20, 4);//constructor that uses parameters size and spinsize
 	cout << a1;
 
-	// test
-	cout << a1;
-	a1.test();
-	cout << a1;
-
 	int input;
 	cout << "how many moves? ";
 	cin >> input;
+	a1.shiftLeft(input);
 
-	for (int i = 0; i < input; i++)
-		a1.shiftLeft();
 	a1.spin();
 	cout << a1;
 
-
-	
 	while (true)
 	{
 		int response = 0;
@@ -46,15 +38,11 @@ int main()
 			cout << "Which Direction of shift do you want? (right/left)(1/2) " << endl;
 			cin >> direction;
 			if (direction == 1)
-			{
-				for (int i = 0; i < numberOfShifts; i++)
-					a1.shiftRight(); // shift games to the right n times
-			}
+				a1.shiftRight(numberOfShifts); // shift games to the right n times
+			
 			else
-			{
-				for (int i = 0; i < numberOfShifts; i++)
-					a1.shiftLeft();// shift games to the left n times
-			}
+				a1.shiftLeft(numberOfShifts);// shift games to the left n times
+			
 			cout << a1;
 			if (a1.isSolved())
 				return 0;

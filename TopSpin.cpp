@@ -66,7 +66,16 @@ void TopSpin::shiftRight()
 {
 	board.move_head(true); //move head giving direction
 }
-
+void TopSpin::shiftLeft(int times)
+{
+	for (int i = 0; i < times; i++)
+		shiftLeft();
+}
+void TopSpin::shiftRight(int times)
+{
+	for (int i = 0; i < times; i++)
+		shiftRight();
+}
 void TopSpin::spin()
 {
 	CircularDoublyLinkedList<int>::Iterator g(board.getHead());
